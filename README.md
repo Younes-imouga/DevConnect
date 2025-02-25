@@ -1,7 +1,7 @@
 # 🌐 Réseau Social pour Développeurs
 
 ## 📌 Contexte
-Créer un réseau social axé sur les développeurs pour partager des connaissances techniques, des projets, des opportunités professionnelles et interagir avec d'autres développeurs.
+Créer un réseau social axé sur les développeurs pour partager des connaissances techniques, des projets, des opportunités professionnelles et interagir avec d'autres développeurs. 
 
 ## 🎯 Objectifs
 - Permettre aux développeurs de se connecter et de partager du contenu technique.
