@@ -11,7 +11,7 @@ class Posts extends Model
 
     protected $fillable = [
         'user_id',
-        'content',
+        'text',
     ];
 
     public function user()
@@ -32,5 +32,11 @@ class Posts extends Model
     public function tags()
     {
         return $this->belongsToMany(Tags::class, 'post_tag');
+    }
+
+    // Define the relationship with Content
+    public function content()
+    {
+        return $this->hasMany(Content::class);
     }
 }

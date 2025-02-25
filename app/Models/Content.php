@@ -10,7 +10,7 @@ class Content extends Model
     use HasFactory;
 
     protected $fillable = [
-        'post_id',
+        'posts_id',
         'type',
         'content',
     ];

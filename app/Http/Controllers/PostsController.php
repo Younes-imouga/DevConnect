@@ -19,32 +19,34 @@ class PostsController extends Controller
             'type' => 'required|in:none,code,image,link',
         ]);
 
-        // Create the post
         $post = Posts::create([
             'user_id' => auth()->id(),
-            'content' => $request->content,
+            'text' => $request->content,
         ]);
 
-        // Handle image upload if provided
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('uploads', 'public');
-
             Content::create([
-                'post_id' => $post->id,
+                'posts_id' => $post->id,
                 'type' => 'image',
                 'content' => $path, 
             ]);
         }
 
         if ($request->type !== "none" && $request->type !== "image") {
-            // Create content entry based on the selected type
             Content::create([
-                'post_id' => $post->id,
+                'posts_id' => $post->id,
                 'type' => $request->type,
                 'content' => $request->type === 'code' ? $request->code : ($request->type === 'link' ? $request->link : $request->content),
             ]);
         }
 
-        return redirect()->route('dashboard')->with('success', 'Post created successfully!');
+        return redirect()->route('dashboard');
+    }
+
+    public function myPosts()
+    {
+        $posts = Posts::where('user_id', auth()->id())->with('content')->get();
+        return view('posts.my-posts', compact('posts'));
     }
 } 

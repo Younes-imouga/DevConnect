@@ -120,19 +120,19 @@
                             
                             <div class="mt-4 bg-gray-900 rounded-lg p-4 font-mono text-sm text-gray-200">
                                 <pre><code>
-            const redis = require('redis');
-            const client = redis.createClient();
-            
-            async function getCachedData(key) {
-            const cached = await client.get(key);
-            if (cached) {
-                return JSON.parse(cached);
-            }
-            
-            const data = await fetchDataFromDB();
-            await client.setEx(key, 3600, JSON.stringify(data));
-            return data;  
-            }
+                                    const redis = require('redis');
+                                    const client = redis.createClient();
+                                    
+                                    async function getCachedData(key) {
+                                    const cached = await client.get(key);
+                                    if (cached) {
+                                        return JSON.parse(cached);
+                                    }
+                                    
+                                    const data = await fetchDataFromDB();
+                                    await client.setEx(key, 3600, JSON.stringify(data));
+                                    return data;  
+                                    }
                                 </code></pre>
                             </div>
 
