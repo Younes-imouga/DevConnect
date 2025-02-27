@@ -107,20 +107,7 @@
                         <p class="text-gray-600 mt-2">Partagez articles, snippets de code et tutoriels pour enrichir la communauté.</p>
                         </div>
                     </div>
-                    <div class="container mx-auto grid md:grid-cols-3 gap-8 text-center mt-8">
-                        <div class="bg-white p-6 shadow-lg rounded-lg">
-                        <h4 class="text-xl font-semibold">Fil d'Actualités Technique</h4>
-                        <p class="text-gray-600 mt-2">Suivez les tendances et les publications de vos connexions pour rester informé.</p>
-                        </div>
-                        <div class="bg-white p-6 shadow-lg rounded-lg">
-                        <h4 class="text-xl font-semibold">Interactions Sociales</h4>
-                        <p class="text-gray-600 mt-2">Aimez, commentez et partagez des contenus pour dynamiser les échanges.</p>
-                        </div>
-                        <div class="bg-white p-6 shadow-lg rounded-lg">
-                        <h4 class="text-xl font-semibold">Notifications en Temps Réel</h4>
-                        <p class="text-gray-600 mt-2">Recevez des alertes pour chaque nouvelle interaction et demande de connexion.</p>
-                        </div>
-                    </div>
+
                     </section>
 
                     <!-- Call to Action -->

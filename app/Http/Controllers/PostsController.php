@@ -43,6 +43,7 @@ class PostsController extends Controller
         return redirect()->route('dashboard');
     }
 
+    
     public function myPosts()
     {
         $posts = Posts::where('user_id', auth()->id())->with('content')->get();

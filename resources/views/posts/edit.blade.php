@@ -7,8 +7,17 @@
         <form action="{{ route('posts.update', $post->id) }}') }}" method="POST" enctype="multipart/form-data" class="bg-white p-4 rounded-lg shadow-md">
             @csrf
             <div class="mb-4">
-                <label for="content" class="block text-gray-700">Content</label>
+                <label for="content" class="block text-gray-700">Text</label>
                 <textarea id="content" name="content" rows="4" class="w-full border rounded-md p-2" required>{{ $post->text }}</textarea>
+            </div>
+            <div class="mb-4">
+                <label for="type" class="block text-gray-700">Add Content</label>
+                <select id="type" name="type" class="w-full border rounded-md p-2" onchange="toggleInputFields()">
+                    <option value="none">none</option>
+                    <option value="code">Code</option>
+                    <option value="image">Image</option>
+                    <option value="link">Link</option>
+                </select>
             </div>
             <div class="mb-4">
                 <label for="image" class=" text-gray-700 hidden" id="imageLabel">Upload Image</label>
@@ -20,16 +29,7 @@
             </div>
             <div class="mb-4">
                 <label for="link" class=" text-gray-700 hidden" id="linkLabel">Link</label>
-                <input type="text" id="link" name="link" class="w-full border rounded-md p-2 hidden" placeholder="Enter your link here">
-            </div>
-            <div class="mb-4">
-                <label for="type" class="block text-gray-700">Add Content</label>
-                <select id="type" name="type" class="w-full border rounded-md p-2" onchange="toggleInputFields()">
-                    <option value="none">none</option>
-                    <option value="code">Code</option>
-                    <option value="image">Image</option>
-                    <option value="link">Link</option>
-                </select>    
+                <input type="url" id="link" name="link" class="w-full border rounded-md p-2 hidden" placeholder="Enter your link here">
             </div>
             <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded">Edit Post</button>
         </form>
