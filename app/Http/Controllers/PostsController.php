@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Posts;
 use App\Models\Content;
+use App\Models\Likes;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -101,4 +102,39 @@ class PostsController extends Controller
 
         return redirect()->route('posts.my')->with('success', 'Post deleted successfully!');
     }
+
+    public function dashboard()
+    {
+        $posts = Posts::with('content')->orderBy('created_at', 'desc')->get();
+        return view('dashboard', compact('posts'));
+    }
+
+    public function toggleLike(Posts $post)
+    {
+        $like = $post->likes()->where('user_id', auth()->id())->first();
+        
+        if ($like) {
+            $like->delete();
+            $isLiked = false;
+        } else {
+            $post->likes()->create([
+                'user_id' => auth()->id()
+            ]);
+            $isLiked = true;
+        }
+        
+        return response()->json([
+            'success' => true,
+            'likesCount' => $post->likes()->count(),
+            'isLiked' => $isLiked
+        ]);
+    }
+
+    public function checkLike(Posts $post)
+    {
+        return response()->json([
+            'isLiked' => $post->likes()->where('user_id', auth()->id())->exists()
+        ]);
+    }
+    
 } 

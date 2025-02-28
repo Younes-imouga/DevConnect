@@ -99,138 +99,56 @@
                 </form>
 
                 <!-- Posts -->
-                <div class="bg-white rounded-xl shadow-sm">
-                    <div class="p-4">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <img src="https://avatar.iran.liara.run/public/boy" alt="User" class="w-12 h-12 rounded-full"/>
-                                <div>
-                                    <h3 class="font-semibold">Alex Chen</h3>
-                                    <p class="text-gray-500 text-sm">Senior Backend Developer at Tech Corp</p>
-                                    <p class="text-gray-400 text-xs">1h ago</p>
-                                </div>
-                            </div>
-                            <button class="text-gray-400 hover:text-gray-600">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"/>
-                                </svg>
-                            </button>
-                        </div>
-                        
-                        <div class="mt-4">
-                            <p class="text-gray-700">Just implemented a caching layer using Redis that reduced our API response time by 70%! Here's a simple example of how to implement caching in Node.js:</p>
-                            
-                            <div class="mt-4 bg-gray-900 rounded-lg p-4 font-mono text-sm text-gray-200">
-                                <pre><code>
-                                    const redis = require('redis');
-                                    const client = redis.createClient();
-                                    
-                                    async function getCachedData(key) {
-                                    const cached = await client.get(key);
-                                    if (cached) {
-                                        return JSON.parse(cached);
-                                    }
-                                    
-                                    const data = await fetchDataFromDB();
-                                    await client.setEx(key, 3600, JSON.stringify(data));
-                                    return data;  
-                                    }
-                                </code></pre>
-                            </div>
+                <div class=" rounded-xl shadow-sm gap-5">
 
-                            <div class="mt-4 flex flex-wrap gap-2">
-                                <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">#nodejs</span>
-                                <span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-xs">#redis</span>
-                                <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">#performance</span>
-                            </div>
-            
-                            <div class="mt-4 flex items-center justify-between border-t pt-4">
-                                <div class="flex items-center space-x-4">
-                                    <button class="flex items-center space-x-2 text-gray-500 hover:text-blue-500">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"/>
-                                        </svg>
-                                        <span>42</span>
-                                    </button>
-                                    <button class="flex items-center space-x-2 text-gray-500 hover:text-blue-500">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"/>
-                                        </svg>
-                                        <span>12</span>
-                                    </button>
-                                </div>
-                                <button class="text-gray-500 hover:text-blue-500">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            
-                <!-- Right Sidebar -->
-                <div class="space-y-6">
-                    <!-- Job Recommendations -->
-                    <div class="bg-white rounded-xl shadow-sm p-4">
-                        <h3 class="font-semibold mb-4">Job Recommendations</h3>
-                        <div class="space-y-4">
-                            <div class="p-3 hover:bg-gray-50 rounded-lg transition-colors duration-200">
-                                <div class="flex items-start space-x-3">
-                                    <img src="/api/placeholder/40/40" alt="Company" class="w-10 h-10 rounded"/>
-                                    <div>
-                                        <h4 class="font-medium">Senior Full Stack Developer</h4>
-                                        <p class="text-gray-500 text-sm">TechStart Inc.</p>
-                                        <p class="text-gray-500 text-sm">Remote • Full-time</p>
-                                        <div class="mt-2 flex flex-wrap gap-2">
-                                            <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">React</span>
-                                            <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">Node.js</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-            
-                            <div class="p-3 hover:bg-gray-50 rounded-lg transition-colors duration-200">
-                                <div class="flex items-start space-x-3">
-                                    <img src="/api/placeholder/40/40" alt="Company" class="w-10 h-10 rounded"/>
-                                    <div>
-                                        <h4 class="font-medium">DevOps Engineer</h4>
-                                        <p class="text-gray-500 text-sm">CloudScale Solutions</p>
-                                        <p class="text-gray-500 text-sm">San Francisco • Hybrid</p>
-                                        <div class="mt-2 flex flex-wrap gap-2">
-                                            <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">AWS</span>
-                                            <span class="px-2 py-1 bg-gray-100 text-gray-600 rounded-full text-xs">Docker</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <button class="mt-4 w-full text-blue-500 hover:text-blue-600 text-sm font-medium">
-                            View All Jobs
-                        </button>
-                    </div>
-            
-                    <!-- Suggested Connections -->
-                    <div class="bg-white rounded-xl shadow-sm p-4">
-                        <h3 class="font-semibold mb-4">Suggested Connections</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-center justify-between">
+                    @if($posts->isEmpty())
+                        <p class="text-gray-500">No posts available.</p>
+                    @else
+                    @foreach($posts as $post)
+                    <div class="bg-white shadow-md rounded-lg p-4 max-w-4xl mx-auto mb-8">
+                        <div class="border-b border-gray-200 pb-4">
+                            <a href="{{ route('profile.show', $post->user) }}">
                                 <div class="flex items-center space-x-3">
-                                    <img src="https://avatar.iran.liara.run/public/boy" alt="User" class="w-10 h-10 rounded-full"/>
+                                    <img src="{{ $post->user->profile->image ? asset('storage/' . $post->user->profile->image) : 'data:image/jpeg;base64,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' }}" alt="User Avatar" class="w-10 h-10 rounded-full">
                                     <div>
-                                        <h4 class="font-medium">Emily Zhang</h4>
-                                        <p class="text-gray-500 text-sm">Frontend Developer</p>
+                                        <p class="font-semibold">{{ $post->user->name }}</p>
+                                        <p class="text-gray-500 text-sm">{{ $post->created_at->format('M d, Y') }}</p>
                                     </div>
                                 </div>
-                                <button class="text-blue-500 hover:text-blue-600">
-                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+                            </a>
+
+                            <p class="mt-3 text-gray-700 text-lg">{{ $post->text }}</p>
+
+                            @if($post->content->isNotEmpty())
+                                <div class="mt-3">
+                                    @foreach($post->content as $content)
+                                        @if($content->type === 'image')
+                                            <img src="{{ Storage::url($content->content) }}" alt="Post Image" class="w-full h-auto rounded-lg shadow-sm">
+                                        @elseif($content->type === 'code')
+                                            <pre class="bg-gray-900 text-gray-200 p-3 rounded-lg overflow-x-auto text-sm"><code>{{ $content->content }}</code></pre>
+                                        @elseif($content->type === 'link')
+                                            <a href="{{ $content->content }}" class="text-blue-500 font-medium hover:underline block mt-1">{{ $content->content }}</a>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            @endif
+
+                            <div class="flex items-center justify-between mt-4 text-gray-600 text-sm">
+                                <button class="flex items-center space-x-1 hover:text-blue-600 like-button" onclick="toggleLike({{ $post->id }})" data-post-id="{{ $post->id }}">
+                                    <span class="likes-count">{{ $post->likes->count() }}</span>
+                                    <svg class="w-5 h-5 like-icon" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
                                     </svg>
                                 </button>
+                                
+                                <button class="hover:text-blue-600">Comment</button>
                             </div>
                         </div>
                     </div>
+                    @endforeach
+                    @endif
                 </div>
+
             </div>
         </div>
     </div>
@@ -245,7 +163,6 @@
             const linkInput = document.getElementById('link');
             const linkLabel = document.getElementById('linkLabel');
 
-            // Reset visibility
             imageInput.classList.add('hidden');
             imageLabel.classList.add('hidden');
             codeInput.classList.add('hidden');
@@ -253,7 +170,6 @@
             linkInput.classList.add('hidden');
             linkLabel.classList.add('hidden');
 
-            // Show relevant input based on selected type
             if (type === 'image') {
                 imageInput.classList.remove('hidden');
                 imageLabel.classList.remove('hidden');
@@ -265,6 +181,63 @@
                 linkLabel.classList.remove('hidden');
             }
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.like-button').forEach(button => {
+                const postId = button.dataset.postId;
+                
+                checkLikeStatus(postId);
+            });
+        });
+
+        async function toggleLike(postId) {
+            console.log(postId);
+            
+            try {
+                const response = await fetch(`/posts/${postId}/like`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    const button = document.querySelector(`.like-button[data-post-id="${postId}"]`);
+                    const icon = button.querySelector('.like-icon');
+                    const count = button.querySelector('.likes-count');
+                    
+                    count.textContent = data.likesCount;
+                    
+                    if (data.isLiked) {
+                        icon.style.fill = 'blue';
+                    } else {
+                        icon.style.fill = 'currentColor';
+                    }
+                }
+            } catch (error) {
+                console.error('Error toggling like:', error);
+            }
+        }
+        async function checkLikeStatus(postId) {
+            try {
+                const response = await fetch(`/posts/${postId}/check-like`);
+                const data = await response.json();
+                
+                const button = document.querySelector(`.like-button[data-post-id="${postId}"]`);
+                const icon = button.querySelector('.like-icon');
+                
+                
+                if (data.isLiked) {
+                    icon.style.fill = 'blue';
+                }
+            } catch (error) {
+                console.error('Error checking like status:', error);
+            }
+        }
+
     </script>
 
 </x-app-layout>

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\Profiles;
+use App\Models\User;
 
 class ProfileController extends Controller
 {
@@ -78,5 +79,11 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function show(User $user): View
+    {
+        $profile = $user->profile; // Fetch the profile associated with the user
+        return view('profile.show', compact('user', 'profile'));
     }
 }

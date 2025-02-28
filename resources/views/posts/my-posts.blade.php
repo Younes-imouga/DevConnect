@@ -35,9 +35,11 @@
             @endif
 
             <div class="flex items-center justify-between mt-4 text-gray-600 text-sm">
-                <button class="flex items-center space-x-1 hover:text-blue-600">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
-               +     <span>Like</span>
+                <button class="flex items-center space-x-1 hover:text-blue-600 like-button" onclick="toggleLike({{ $post->id }})" data-post-id="{{ $post->id }}">
+                    <span class="likes-count">{{ $post->likes->count() }}</span>
+                    <svg class="w-5 h-5 like-icon" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+                    </svg>
                 </button>
                 <button class="hover:text-blue-600">Comment</button>
                 <a href="{{ route('posts.edit', $post->id) }}" class="text-blue-600 hover:underline">Edit</a>
@@ -54,4 +56,61 @@
 
     @endif
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.like-button').forEach(button => {
+                const postId = button.dataset.postId;
+                
+                checkLikeStatus(postId);
+            });
+        });
+
+        async function toggleLike(postId) {
+            console.log(postId);
+            
+            try {
+                const response = await fetch(`/posts/${postId}/like`, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    const button = document.querySelector(`.like-button[data-post-id="${postId}"]`);
+                    const icon = button.querySelector('.like-icon');
+                    const count = button.querySelector('.likes-count');
+                    
+                    count.textContent = data.likesCount;
+                    
+                    if (data.isLiked) {
+                        icon.style.fill = 'blue';
+                    } else {
+                        icon.style.fill = 'currentColor';
+                    }
+                }
+            } catch (error) {
+                console.error('Error toggling like:', error);
+            }
+        }
+        async function checkLikeStatus(postId) {
+            try {
+                const response = await fetch(`/posts/${postId}/check-like`);
+                const data = await response.json();
+                
+                const button = document.querySelector(`.like-button[data-post-id="${postId}"]`);
+                const icon = button.querySelector('.like-icon');
+                
+                
+                if (data.isLiked) {
+                    icon.style.fill = 'blue';
+                }
+            } catch (error) {
+                console.error('Error checking like status:', error);
+            }
+        }
+</script>
 </x-app-layout>
