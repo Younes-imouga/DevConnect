@@ -66,7 +66,6 @@
         });
 
         async function toggleLike(postId) {
-            console.log(postId);
             
             try {
                 const response = await fetch(`/posts/${postId}/like`, {
@@ -87,7 +86,7 @@
                     count.textContent = data.likesCount;
                     
                     if (data.isLiked) {
-                        icon.style.fill = 'blue';
+                        icon.style.fill = 'rgb(59 130 246)';
                     } else {
                         icon.style.fill = 'currentColor';
                     }
@@ -106,7 +105,7 @@
                 
                 
                 if (data.isLiked) {
-                    icon.style.fill = 'blue';
+                    icon.style.fill = 'rgb(59 130 246)';
                 }
             } catch (error) {
                 console.error('Error checking like status:', error);
