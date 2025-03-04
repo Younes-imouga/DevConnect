@@ -13,19 +13,13 @@ use App\Models\User;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
     public function edit(Request $request): View
     {
         $user = $request->user();
-        $profile = $user->profile; // Fetch the profile associated with the user
+        $profile = $user->profile;
         return view('profile.edit', compact('user', 'profile'));
     }
 
-    /**
-     * Update the user's profile information.
-     */
     public function update(Request $request): RedirectResponse
     {
         $request->validate([
@@ -44,7 +38,6 @@ class ProfileController extends Controller
 
         $user->save();
 
-        // Update additional profile information if you have a Profiles model
         $profile = $user->profile ?? new Profiles();
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('profile_images', 'public');
@@ -54,15 +47,12 @@ class ProfileController extends Controller
         $profile->github_url = $request->github_url;
         $profile->linkedin_url = $request->linkedin_url;
         $profile->skills = $request->skills;
-        $profile->user_id = $user->id; // Ensure the profile is linked to the user
+        $profile->user_id = $user->id;
         $profile->save();
 
         return redirect()->route('profile.edit')->with('status', 'Profile updated successfully!');
     }
 
-    /**
-     * Delete the user's account.
-     */
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
@@ -83,7 +73,7 @@ class ProfileController extends Controller
 
     public function show(User $user): View
     {
-        $profile = $user->profile; // Fetch the profile associated with the user
+        $profile = $user->profile;
         return view('profile.show', compact('user', 'profile'));
     }
 }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Posts;
 use App\Models\Content;
 use App\Models\Connections;
+use App\Models\PostTag;
+use App\Models\Tags;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -17,6 +19,7 @@ class PostsController extends Controller
             'code' => 'nullable|string',
             'link' => 'nullable|url',
             'type' => 'required|in:none,code,image,link',
+            'tags' => 'nullable|string',
         ]);
 
         $post = Posts::create([
@@ -29,7 +32,7 @@ class PostsController extends Controller
             Content::create([
                 'posts_id' => $post->id,
                 'type' => 'image',
-                'content' => $path, 
+                'content' => $path,
             ]);
         }
 
@@ -39,6 +42,15 @@ class PostsController extends Controller
                 'type' => $request->type,
                 'content' => $request->type === 'code' ? $request->code : ($request->type === 'link' ? $request->link : $request->content),
             ]);
+        }
+
+        if ($request->tags) {
+            $tags = explode(',', $request->tags);
+            foreach ($tags as $tag) {
+                $tag = trim($tag);
+                $tagModel = Tags::firstOrCreate(['name' => $tag]);
+                $post->tags()->attach($tagModel->id);
+            }
         }
 
         return redirect()->route('dashboard');
@@ -106,7 +118,17 @@ class PostsController extends Controller
     public function dashboard()
     {
         $posts = Posts::with('content')->orderBy('created_at', 'desc')->get();
-        return view('dashboard', compact('posts'));
+        $user = auth()->user();
+        
+        $postCount = $user->posts()->count();
+        
+        $connectionCount = Connections::where(function($query) use ($user) {
+            $query->where('user_id', $user->id)->orWhere('connected_user_id', $user->id);
+        })->where('status', 'accepted')->count();
+        
+        $topTags = Tags::withCount('posts')->orderBy('posts_count', 'desc')->take(3)->get();
+
+        return view('dashboard', compact('posts', 'postCount', 'connectionCount', 'topTags'));
     }
 
     public function Connections(){

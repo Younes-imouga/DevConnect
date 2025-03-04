@@ -34,6 +34,14 @@
                 </div>
             @endif
 
+            @if($post->tags->isNotEmpty())
+                <div class="mt-2">
+                    @foreach($post->tags as $tag)
+                        <span class="inline-block bg-blue-200 text-gray-700 text-sm rounded-full px-3 py-1 mr-2">#{{ $tag->name }}</span>
+                    @endforeach
+                </div>
+            @endif
+
             <div class="flex items-center justify-between mt-4 text-gray-600 text-sm">
                 <button class="flex items-center space-x-1 hover:text-blue-600 like-button" onclick="toggleLike({{ $post->id }})" data-post-id="{{ $post->id }}">
                     <span class="likes-count">{{ $post->likes->count() }}</span>
