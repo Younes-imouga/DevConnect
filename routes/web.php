@@ -37,6 +37,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/connections/send', [ConnectionController::class, 'sendConnection'])->name('connections.send');
     Route::post('/connections/{id}/accept', [ConnectionController::class, 'acceptConnection'])->name('connections.accept');
     Route::post('/connections/{id}/decline', [ConnectionController::class, 'declineConnection'])->name('connections.decline');
+    
+    Route::get('/dashboard/search', [PostsController::class, 'search']);
 });
 
 

@@ -34,7 +34,6 @@ class Posts extends Model
         return $this->belongsToMany(Tags::class, 'post_tag');
     }
 
-    // Define the relationship with Content
     public function content()
     {
         return $this->hasMany(Content::class);

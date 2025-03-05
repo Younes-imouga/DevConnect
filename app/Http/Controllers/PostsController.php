@@ -136,4 +136,20 @@ class PostsController extends Controller
         $recievedConnections = Connections::where('connected_user_id', auth()->id())->with('user')->get();
         return view('Connection', compact('Connection', 'recievedConnections'));
     }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+    
+        $posts = Posts::with('content', 'tags', 'user', 'user.profile')
+            ->whereHas('user', function ($q) use ($query) {
+                $q->where('name', 'like', '%' . $query . '%');
+            })
+            ->orWhereHas('tags', function ($q) use ($query) {
+                $q->where('name', 'like', '%' . $query . '%');
+            })
+            ->get();
+    
+        return response()->json(['posts' => $posts]);
+    }
 } 

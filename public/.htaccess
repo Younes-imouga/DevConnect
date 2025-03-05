@@ -23,3 +23,8 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+<Directory /path/to/your/project/storage>
+    AllowOverride All
+    Require all granted
+</Directory>
