@@ -141,7 +141,7 @@ class PostsController extends Controller
     {
         $query = $request->input('query');
     
-        $posts = Posts::with('content', 'tags', 'user', 'user.profile')
+        $posts = Posts::with('content', 'tags', 'user', 'user.profile', 'likes', 'comments', 'comments.user', 'comments.user.profile')
             ->whereHas('user', function ($q) use ($query) {
                 $q->where('name', 'like', '%' . $query . '%');
             })
